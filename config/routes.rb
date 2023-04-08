@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   namespace :api do
     namespace :v1 do
+      post 'users/user_signup'
       get 'places/places_details'
       post 'places/create_favorite_places'
     end

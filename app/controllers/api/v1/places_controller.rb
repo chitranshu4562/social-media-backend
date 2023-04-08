@@ -1,5 +1,4 @@
 class Api::V1::PlacesController < ApplicationController
-  skip_before_action :verify_authenticity_token
   def places_details
     places_details = Place.all.reverse_order
     render json: {data: places_details, message: 'Data received successfully'}, status: 200
