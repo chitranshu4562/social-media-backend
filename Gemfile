@@ -32,7 +32,7 @@ gem "redis", "~> 4.0"
 
 # Use rack-cors for cross origin resource sharing
 gem 'rack-cors'
-
+gem 'bcrypt'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
