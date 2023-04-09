@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'users/user_signup'
+      post 'users/user_login'
+
       get 'places/places_details'
       post 'places/create_favorite_places'
     end

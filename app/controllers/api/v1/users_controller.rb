@@ -5,7 +5,25 @@ class Api::V1::UsersController < ApplicationController
       auth_token = generate_auth_token(email: user.email)
       render json: { data: user, auth_token: auth_token, message: 'User is created successfully'}, status: 200
     else
-      render json: { message: user.errors.full_messages}, status: 400
+      render json: { error: user.errors.full_messages}, status: 400
+    end
+  end
+
+  def user_login
+    begin
+      user = User.find_by(email: params[:email])
+      if user
+        if user.authenticate(params[:password])
+          auth_token = generate_auth_token(email: params[:email])
+          render json: { auth_token: auth_token, message: 'User is authenticated successfully' }, status: 200
+        else
+          raise "Password is incorrect"
+        end
+      else
+        raise "This email is not found"
+      end
+    rescue StandardError => e
+      render json: { error: e.to_s }, status: 400
     end
   end
 end
