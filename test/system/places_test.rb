@@ -15,7 +15,7 @@ class PlacesTest < ApplicationSystemTestCase
     click_on "New place"
 
     fill_in "Description", with: @place.description
-    fill_in "Imagelink", with: @place.imageLink
+    fill_in "Image link", with: @place.image_link
     fill_in "Title", with: @place.title
     click_on "Create Place"
 
@@ -28,7 +28,7 @@ class PlacesTest < ApplicationSystemTestCase
     click_on "Edit this place", match: :first
 
     fill_in "Description", with: @place.description
-    fill_in "Imagelink", with: @place.imageLink
+    fill_in "Image link", with: @place.image_link
     fill_in "Title", with: @place.title
     click_on "Update Place"
 

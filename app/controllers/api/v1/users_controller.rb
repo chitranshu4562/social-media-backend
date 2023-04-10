@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(email: params[:email], password: params[:password])
     if user.save
       auth_token = generate_auth_token(email: user.email)
-      render json: { data: user, auth_token: auth_token, message: 'User is created successfully'}, status: 200
+      render json: { id: user.id, email: user.email, auth_token: auth_token, message: 'User is created successfully'}, status: 200
     else
       render json: { error: user.errors.full_messages}, status: 400
     end
@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
       if user
         if user.authenticate(params[:password])
           auth_token = generate_auth_token(email: params[:email])
-          render json: { auth_token: auth_token, message: 'User is authenticated successfully' }, status: 200
+          render json: { id: user.id, email: user.email, auth_token: auth_token, message: 'User is authenticated successfully'}, status: 200
         else
           raise "Password is incorrect"
         end

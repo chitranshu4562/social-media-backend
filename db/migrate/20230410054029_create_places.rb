@@ -3,7 +3,7 @@ class CreatePlaces < ActiveRecord::Migration[7.0]
     create_table :places do |t|
       t.string :title
       t.text :description
-      t.text :imageLink
+      t.text :image_link
 
       t.timestamps
     end
