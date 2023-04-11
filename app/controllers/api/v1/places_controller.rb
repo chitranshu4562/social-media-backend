@@ -1,4 +1,5 @@
 class Api::V1::PlacesController < ApplicationController
+  before_action :authenticate_request
   def places_detail
     places_detail = Place.all.reverse_order
     render json: {data: places_detail, message: 'Data received successfully'}, status: 200

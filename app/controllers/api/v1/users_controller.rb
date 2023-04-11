@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
   def user_signup
     user = User.new(email: params[:email], password: params[:password])
     if user.save
-      auth_token = generate_auth_token(email: user.email)
+      payload = { user_id: user.id, email: user.email }
+      auth_token = generate_auth_token(payload)
       render json: { id: user.id, email: user.email, auth_token: auth_token, message: 'User is created successfully'}, status: 200
     else
       render json: { error: user.errors.full_messages}, status: 400
@@ -14,7 +15,8 @@ class Api::V1::UsersController < ApplicationController
       user = User.find_by(email: params[:email])
       if user
         if user.authenticate(params[:password])
-          auth_token = generate_auth_token(email: params[:email])
+          payload = { user_id: user.id, email: user.email }
+          auth_token = generate_auth_token(payload)
           render json: { id: user.id, email: user.email, auth_token: auth_token, message: 'User is authenticated successfully'}, status: 200
         else
           raise "Password is incorrect"
