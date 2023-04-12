@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'places/places_detail'
       post 'places/create_favorite_places'
+      get 'places/delete_place'
+      post 'places/edit_place'
 
       post 'users/user_signup'
       post 'users/user_login'
