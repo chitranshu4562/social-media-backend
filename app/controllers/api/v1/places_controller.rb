@@ -4,7 +4,7 @@ class Api::V1::PlacesController < ApplicationController
   def places_detail
     places_detail = Place.joins(:user).where(place_tag: 'public').or(Place.where(user: @current_user))
                          .select('places.id', 'places.title', 'places.description', 'places.image_link',
-                                 'users.email as user_email')
+                                 'users.email as user_email', 'users.first_name as user_name')
     render json: { data: places_detail, message: 'Data received successfully' }, status: :ok
   end
 
