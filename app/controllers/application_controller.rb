@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
   def generate_auth_token(payload)
-    return JsonWebToken.encode(payload)
+    @expiration_time = (10.seconds.from_now - Time.current).to_i
+    return JsonWebToken.encode(payload, @expiration_time)
   end
 
   def authenticate_request
