@@ -18,8 +18,8 @@ class Api::V1::UsersController < ApplicationController
         if user.authenticate(params[:password])
           payload = { user_id: user.id, email: user.email }
           auth_token = generate_auth_token(payload)
-          render json: { id: user.id, email: user.email, auth_token: auth_token, expires_in: @expiration_time,
-                         message: 'User is authenticated successfully'}, status: 200
+          render json: { id: user.id, email: user.email, first_name: user.first_name, last_name: user.last_name,
+                         auth_token: auth_token, expires_in: @expiration_time, message: 'User is authenticated successfully'}, status: 200
         else
           raise "Password is incorrect"
         end
